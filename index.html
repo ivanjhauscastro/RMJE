@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RMJE Construction Services Corporation</title>
+    <link rel="icon" type="image/png" href="rmjeelogoo.png">
+</head>
+  <style>
+    :root {
+      --blue: #355b8c;
+      --blue-dark: #294a73;
+      --text: #1f2430;
+      --muted: #646e7a;
+      --bg: #f5f6f8;
+      --white: #ffffff;
+      --border: rgba(53, 91, 140, 0.14);
+      --shadow: 0 14px 34px rgba(11, 24, 45, 0.09);
+      --radius: 18px;
+      --container: min(1180px, calc(100% - 32px));
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .container { width: var(--container); margin: 0 auto; }
+    .section { padding: 78px 0; }
+    .section-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 3.1vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: #142133;
+    }
+    .section-subtitle {
+      max-width: 860px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .text-center { text-align: center; }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      background: var(--blue);
+      box-shadow: 0 8px 22px rgba(24, 41, 67, 0.18);
+    }
+    .header-inner {
+      width: var(--container);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 92px;
+    }
+    .brand img {
+      width: clamp(170px, 18vw, 340px);
+      height: auto;
+      object-fit: contain;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav > li {
+      position: relative;
+    }
+    .nav > li > a,
+    .nav > li > button {
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1rem;
+      font-weight: 700;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      padding: 10px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity .25s ease;
+      white-space: nowrap;
+    }
+    .nav > li > a:hover,
+    .nav > li > button:hover { opacity: .82; }
+    .nav > li::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      margin: 0 auto;
+      transition: width .28s ease;
+    }
+    .nav > li:hover::after { width: calc(100% - 24px); }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 0;
+      min-width: 220px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 20px 40px rgba(20, 33, 51, 0.16);
+      padding: 10px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: .22s ease;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 10px;
+      color: var(--text);
+      font-size: .96rem;
+    }
+    .dropdown-menu a:hover { background: #f2f5f9; color: var(--blue-dark); }
+    .has-dropdown:hover .dropdown-menu,
+    .has-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: transparent;
+      color: #fff;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1.35rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 150px 0 90px;
+      background:
+        linear-gradient(rgba(255,255,255,.42), rgba(255,255,255,.44)),
+        url('background.jpg') center/cover no-repeat;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.08) 55%, rgba(255,255,255,.22) 100%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      width: min(1000px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.5rem, 5.6vw, 5.1rem);
+      line-height: 1.02;
+      letter-spacing: 0.5px;
+      color: #101010;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .hero p {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.1rem, 2.3vw, 2.05rem);
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 36px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 14px 30px;
+      border-radius: 0;
+      background: var(--blue);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+      transition: transform .22s ease, background .22s ease, box-shadow .22s ease;
+      box-shadow: 0 10px 24px rgba(25, 44, 77, 0.16);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--blue-dark);
+    }
+    .btn.secondary {
+      background: rgba(53, 91, 140, 0.96);
+      min-width: 420px;
+    }
+
+    .intro {
+      background: #fff;
+    }
+    .intro .section-title { margin-bottom: 20px; }
+    .intro .copy {
+      max-width: 980px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .intro .copy strong {
+      display: block;
+      color: #243245;
+      margin-bottom: 16px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 30px;
+    }
+    .service-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(17, 27, 46, 0.05);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .service-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .service-body { padding: 18px 18px 22px; }
+    .service-body h3 {
+      color: var(--blue-dark);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .service-body p {
+      color: var(--muted);
+      font-size: .98rem;
+    }
+
+    .split-panel {
+      padding: 0;
+    }
+    .split-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 540px;
+    }
+    .why-panel,
+    .form-panel {
+      background: var(--blue);
+      color: #fff;
+      padding: 58px min(5vw, 56px);
+    }
+    .why-panel h2,
+    .form-panel h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.9rem, 3vw, 2.75rem);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px 18px;
+      margin-top: 30px;
+    }
+    .icon-box {
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      padding: 10px 8px;
+      border-radius: 18px;
+    }
+    .icon-box img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin: 0 auto 16px;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.12));
+      border-radius: 14px;
+      transition: transform .28s ease, filter .28s ease;
+      will-change: transform;
+    }
+    .icon-box h6 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .icon-box:hover img {
+      transform: translateY(-8px) scale(1.08) rotate(-4deg);
+      filter: drop-shadow(0 16px 24px rgba(0,0,0,.18));
+    }
+    .icon-box:active img {
+      transform: translateY(-2px) scale(.98);
+    }
+
+    .form-panel p {
+      color: rgba(255,255,255,.86);
+      margin-bottom: 22px;
+      max-width: 520px;
+    }
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+    .form-grid input,
+    .form-grid textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      font-size: .98rem;
+      outline: none;
+    }
+    .form-grid input::placeholder,
+    .form-grid textarea::placeholder { color: rgba(255,255,255,.78); }
+    .form-grid textarea { min-height: 150px; resize: vertical; }
+    .form-grid .submit-btn {
+      width: fit-content;
+      padding-inline: 30px;
+      background: transparent;
+    }
+
+    .quality-section { background: #fff; }
+    .quality-intro { margin-bottom: 34px; }
+    .quality-grid {
+      display: grid;
+      gap: 26px;
+    }
+    .feature-banner {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+      border-radius: 0;
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+    .feature-banner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .feature-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(16,25,38,.78) 0%, rgba(16,25,38,.42) 48%, rgba(16,25,38,.2) 100%);
+      z-index: 0;
+    }
+    .feature-banner.right::before {
+      background: linear-gradient(270deg, rgba(16,25,38,.78) 0%, rgba(16,25,38,.42) 48%, rgba(16,25,38,.2) 100%);
+    }
+    .feature-copy {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      max-width: 560px;
+      padding: 54px;
+    }
+    .feature-banner.right .feature-copy {
+      margin-left: auto;
+      text-align: left;
+    }
+    .feature-copy h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .feature-copy p {
+      color: rgba(255,255,255,.92);
+      font-size: 1rem;
+    }
+
+    .projects-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+    .projects-head p {
+      max-width: 530px;
+      color: var(--muted);
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .project-thumb {
+      overflow: hidden;
+      border-radius: 0;
+      box-shadow: 0 12px 26px rgba(19, 29, 48, 0.08);
+    }
+    .project-thumb img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      transition: transform .28s ease;
+    }
+    .project-thumb:hover img { transform: scale(1.06); }
+    .center-btn { text-align: center; margin-top: 34px; }
+    .center-btn .btn { min-width: 340px; }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .post-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 28px rgba(16, 26, 43, 0.06);
+      overflow: hidden;
+    }
+    .post-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .post-content { padding: 22px; }
+    .post-content h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.45rem;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: #18263c;
+    }
+    .post-content p { color: var(--muted); }
+
+    .cta-banner {
+      position: relative;
+      min-height: 400px;
+      background: linear-gradient(rgba(255,255,255,.18), rgba(255,255,255,.18)), url('building.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 16px;
+    }
+    .cta-panel {
+      width: min(950px, 100%);
+      padding: 24px;
+    }
+    .cta-panel h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+      line-height: 1.25;
+      margin-bottom: 14px;
+      color: #111b2b;
+    }
+    .cta-panel p {
+      margin-bottom: 22px;
+      color: #243245;
+      font-size: 1.05rem;
+    }
+
+    .footer-main {
+      background: #24272d;
+      color: rgba(255,255,255,.8);
+      padding: 60px 0 30px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .95fr 1fr;
+      gap: 34px;
+      align-items: start;
+    }
+    .footer-col h3 {
+      color: #fff;
+      font-size: 1.15rem;
+      font-family: Georgia, "Times New Roman", serif;
+      margin-bottom: 18px;
+      letter-spacing: .3px;
+    }
+    .footer-about .footer-logo {
+      width: 190px;
+      margin-bottom: 18px;
+    }
+    .footer-col p { color: rgba(255,255,255,.72); }
+    .footer-col a {
+      color: rgba(255,255,255,.74);
+      display: inline-block;
+      margin-bottom: 9px;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px 22px;
+    }
+    .footer-agency-link {
+      color: rgba(255,255,255,.78);
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .footer-agency-link:hover,
+    .footer-agency-link:focus,
+    .footer-agency-link.is-clicked {
+      color: #fff;
+    }
+    .license-logos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(82px, 100px));
+      gap: 14px;
+    }
+    .license-logos img {
+      width: 100%;
+      background: rgba(255,255,255,.92);
+      border-radius: 14px;
+      padding: 10px;
+      height: 82px;
+      object-fit: contain;
+    }
+    .footer-bottom {
+      background: #2b2e35;
+      color: rgba(255,255,255,.66);
+      text-align: center;
+      padding: 18px 16px;
+      font-size: .95rem;
+    }
+
+    @media (max-width: 1180px) {
+      .nav > li > a,
+      .nav > li > button { font-size: .95rem; padding-inline: 9px; }
+      .projects-grid { grid-template-columns: repeat(3, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 960px) {
+      .nav-toggle { display: inline-flex; }
+      .main-nav {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 16px;
+        left: 16px;
+        background: var(--blue);
+        border-radius: 18px;
+        padding: 14px;
+        box-shadow: 0 20px 38px rgba(15, 29, 55, 0.22);
+        display: none;
+      }
+      .main-nav.active { display: block; }
+      .nav {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+      }
+      .nav > li::after { display: none; }
+      .nav > li > a,
+      .nav > li > button {
+        justify-content: space-between;
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+      }
+      .nav > li > a:hover,
+      .nav > li > button:hover { background: rgba(255,255,255,.08); }
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        margin-top: 4px;
+        border-radius: 12px;
+        padding: 6px;
+        display: none;
+      }
+      .has-dropdown.open .dropdown-menu { display: block; }
+      .split-wrap,
+      .footer-grid,
+      .posts-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .icon-grid { grid-template-columns: repeat(3, 1fr); }
+      .projects-head { flex-direction: column; align-items: start; }
+      .feature-copy,
+      .feature-banner.right .feature-copy { max-width: 100%; padding: 36px; }
+      .feature-banner,
+      .cta-banner { min-height: 340px; }
+    }
+
+    @media (max-width: 768px) {
+      .header-inner { min-height: 84px; }
+      .hero { min-height: 92vh; padding-top: 138px; }
+      .hero-actions { flex-direction: column; }
+      .btn.secondary,
+      .btn,
+      .center-btn .btn { width: 100%; min-width: 0; }
+      .section { padding: 62px 0; }
+      .services-grid,
+      .projects-grid,
+      .icon-grid { grid-template-columns: 1fr; }
+      .service-card img,
+      .project-thumb img,
+      .post-card img { height: 240px; }
+      .why-panel,
+      .form-panel { padding: 42px 22px; }
+      .feature-banner { min-height: 310px; }
+      .feature-copy { padding: 28px 24px; }
+      .footer-nav-grid,
+      .license-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 480px) {
+      .brand img { width: 150px; }
+      .hero h1 { font-size: 2.15rem; }
+      .hero p { font-size: 1.05rem; }
+      .section-title { font-size: 1.8rem; }
+      .post-content h3 { font-size: 1.3rem; }
+      .footer-nav-grid,
+      .license-logos { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#home" class="brand" aria-label="RMJE Home">
+        <img src="rmjelogo.webp" alt="RMJE Construction Services Corporation" />
+      </a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul class="nav">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li class="has-dropdown">
+            <button type="button">Services</button>
+            <div class="dropdown-menu">
+              <a href="#services">Consultation</a>
+              <a href="#services">Design</a>
+              <a href="#services">Build</a>
+              <a href="#services">Project Management</a>
+            </div>
+          </li>
+          <li class="has-dropdown">
+            <button type="button">Who We Work With</button>
+            <div class="dropdown-menu">
+              <a href="#quality">Commercial</a>
+              <a href="#quality">Residential</a>
+              <a href="#quality">Industrial</a>
+            </div>
+          </li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>NEW BUILD AND RENOVATION</h1>
+      <p>We Build with Quality, Honesty and Excellence</p>
+      <div class="hero-actions">
+        <a href="#about" class="btn">Read More</a>
+        <a href="#contact" class="btn secondary">Request an Appointment Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section intro" id="about">
+    <div class="container text-center">
+      <h2 class="section-title">Trusted Construction Company in the Philippines</h2>
+      <div class="copy">
+        <strong>
+          You need a team to work with you on an important building project. A construction project inspired by a combination of your needs and wants. You want superior quality, you have a time frame and a budget to complete the project within. You found the team you are looking for.
+        </strong>
+        <p>
+          Recognized as one of the most trusted and client-focused construction companies in the Philippines, RMJE Construction Services Corporation is a team of passionate and experienced professionals, ready to serve you from start to end of your project. We are masters at managing, coordinating and building so you can rely on us for any of your construction needs.
+        </p>
+      </div>
+
+      <div class="services-grid" id="services">
+        <article class="service-card">
+          <img src="Consultancy.jpg" alt="Consultancy service" />
+          <div class="service-body">
+            <h3>Consultancy</h3>
+            <p>For customers who want detailed costing, planning, and guidance for their project, our consultants help avoid extra costs, delays, and other issues.</p>
+          </div>
+        </article>
+        <article class="service-card">
+          <img src="Design.jpg" alt="Design service" />
+          <div class="service-body">
+            <h3>Design</h3>
+            <p>We offer complete design services for residential and commercial spaces, from architectural planning to interior design and installation.</p>
+          </div>
+        </article>
+        <article class="service-card">
+          <img src="Build.jpg" alt="Build service" />
+          <div class="service-body">
+            <h3>Build</h3>
+            <p>Our construction team is trained to perform building work with safety, quality, budget, and delivery time always in mind.</p>
+          </div>
+        </article>
+        <article class="service-card">
+          <img src="Project.webp" alt="Project management service" />
+          <div class="service-body">
+            <h3>Project Management</h3>
+            <p>For those who want to build without the stress, we handle the workforce, technical supervision, and project coordination from start to finish.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section split-panel">
+    <div class="split-wrap">
+      <div class="why-panel">
+        <h2>Why RMJE Construction Services Corporation</h2>
+        <div class="icon-grid">
+          <div class="icon-box">
+            <img src="price.jpg" alt="Competitive price" />
+            <h6>Competitive price</h6>
+          </div>
+          <div class="icon-box">
+            <img src="time.jpg" alt="Always on time" />
+            <h6>Always on time</h6>
+          </div>
+          <div class="icon-box">
+            <img src="builder.jpg" alt="Licensed builder" />
+            <h6>Licensed builder</h6>
+          </div>
+          <div class="icon-box">
+            <img src="solutions.jpg" alt="Complete solutions" />
+            <h6>Complete solutions</h6>
+          </div>
+          <div class="icon-box">
+            <img src="professionals.jpg" alt="Qualified professionals" />
+            <h6>Qualified professionals</h6>
+          </div>
+          <div class="icon-box">
+            <img src="bigsmall.jpg" alt="No job is too big or small" />
+            <h6>No job is too big or small</h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-panel" id="contact">
+        <h2>Let's talk about your plans</h2>
+        <p>Ready to build your new house or renovate your store? We are here to help.</p>
+        <form class="form-grid">
+          <input type="text" placeholder="Name:" name="fname" required />
+          <input type="email" placeholder="Email:" name="email" required />
+          <input type="text" placeholder="Mobile:" name="pnumber" required />
+          <textarea placeholder="Your Message" name="Message" required></textarea>
+          <button type="submit" class="btn submit-btn">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section quality-section" id="quality">
+    <div class="container text-center quality-intro">
+      <h2 class="section-title">Quality Construction Services</h2>
+      <p class="section-subtitle">
+        <strong>RMJE Construction is a company that stands out through the vast experience of its qualified professionals in diverse areas of construction work. We do:</strong>
+      </p>
+    </div>
+
+    <div class="container quality-grid">
+      <article class="feature-banner left">
+        <img src="residential.jpg" alt="Residential Design and Construction" />
+        <div class="feature-copy">
+          <h3>Residential Design and Construction</h3>
+          <p>We build homes Filipinos would love coming home to. We design, build, and bring your vision to life with consistent quality and dependable service.</p>
+        </div>
+      </article>
+
+      <article class="feature-banner right">
+        <img src="commercial.jpg" alt="Commercial Design and Construction" />
+        <div class="feature-copy">
+          <h3>Commercial Design and Construction</h3>
+          <p>We understand business and corporate requirements, from interiors and systems to technical installation, helping create spaces that impress clients and support productivity.</p>
+        </div>
+      </article>
+
+      <article class="feature-banner left">
+        <img src="electrical.jpg" alt="Electrical Fit Outs" />
+        <div class="feature-copy">
+          <h3>Electrical Fit Outs</h3>
+          <p>We specialize in electrical fit outs and maintenance services, supporting your project from design and implementation through long-term operational reliability.</p>
+        </div>
+      </article>
+
+      <article class="feature-banner right">
+        <img src="renovation.jpg" alt="Renovation Services" />
+        <div class="feature-copy">
+          <h3>Renovation Services</h3>
+          <p>As your family or business grows, your property can grow too. Our renovation services improve value, function, and comfort without the disruption of moving away.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="portfolio">
+    <div class="container">
+      <div class="projects-head">
+        <div>
+          <h2 class="section-title">Recent Projects</h2>
+        </div>
+        <p>Our portfolio spans over three decades. View some of our highlighted achievements here.</p>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-thumb"><img src="juan.webp" alt="Recent project 1" /></div>
+        <div class="project-thumb"><img src="too.webp" alt="Recent project 2" /></div>
+        <div class="project-thumb"><img src="tree.jpg" alt="Recent project 3" /></div>
+        <div class="project-thumb"><img src="four.jpg" alt="Recent project 4" /></div>
+        <div class="project-thumb"><img src="five.jpg" alt="Recent project 5" /></div>
+        <div class="project-thumb"><img src="six.webp" alt="Recent project 6" /></div>
+        <div class="project-thumb"><img src="seven.webp" alt="Recent project 7" /></div>
+        <div class="project-thumb"><img src="eight.jpg" alt="Recent project 8" /></div>
+      </div>
+
+      <div class="center-btn">
+        <a href="#contact" class="btn">Click Here for More Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="blog">
+    <div class="container">
+      <h2 class="section-title">Latest Posts</h2>
+
+      <div class="posts-grid">
+        <article class="post-card">
+          <img src="milktea.png" alt="How To Build A Successful Milk Tea Shop" />
+          <div class="post-content">
+            <h3>How To Build A Successful Milk Tea Shop</h3>
+            <p>You may have noticed that in recent years, the milk tea industry has been booming. This article shares practical ideas on planning, choosing the right location, and designing a successful milk tea shop.</p>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <img src="minibar.png" alt="Tips For Mini Bar Design In Living Room" />
+          <div class="post-content">
+            <h3>Tips For Mini Bar Design In Living Room</h3>
+            <p>If you enjoy hosting guests at home, creating a mini bar in the living room can be a smart and stylish addition. Here are practical tips to help you start your mini bar design.</p>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <img src="construction.png" alt="Construction Company Philippines" />
+          <div class="post-content">
+            <h3>Construction Company Philippines: How Temperature Affect Buildings</h3>
+            <p>Climate and architecture are closely connected. This post explains how temperature changes affect buildings and why construction professionals need to adapt design strategies.</p>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <img src="warehouse.png" alt="Warehouse Design And Construction Tips" />
+          <div class="post-content">
+            <h3>Warehouse Design And Construction Tips</h3>
+            <p>Efficient warehouse layouts improve movement, protect goods, and support better operations. Learn how layout planning can optimize storage and business performance.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-panel">
+      <h2>Set your project up for success by hiring RMJE Construction Services Corporation as your design and construction project managers.</h2>
+      <p>Ready to build your project? Let's talk about your plans.</p>
+      <a href="#contact" class="btn">Request an Appointment Now</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-main">
+      <div class="container footer-grid">
+        <div class="footer-col footer-about">
+          <img src="rmjelogo.webp" alt="RMJE logo" class="footer-logo" />
+          <h3>About Us</h3>
+          <p>RMJE Construction Services Corporation is committed to meeting our customers' expectations through quality service, professionalism, and reliable project delivery.</p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Navigate</h3>
+          <div class="footer-nav-grid">
+            <div>
+              <a href="#home">Home</a>
+              <a href="#blog">Blog</a>
+              <a href="#quality">Residential</a>
+              <a href="#quality">Renovations</a>
+              <a href="#quality">Who We Work With</a>
+            </div>
+            <div>
+              <a href="#about">About Us</a>
+              <a href="#portfolio">Portfolio</a>
+              <a href="#services">Services</a>
+              <a href="#quality">Commercial</a>
+              <a href="#contact">Contact Us</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Licenses and Permits</h3>
+          <div class="license-logos">
+            <img src="1.png" alt="License 1" />
+            <img src="2.png" alt="License 2" />
+            <img src="3.png" alt="License 3" />
+            <img src="4.png" alt="License 4" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; Copyright 2024 RMJE Construction Services Corporation | All Rights Reserved | Built by: <span class="footer-agency-link" id="footerAgencyLink">IMStandout Digital Marketing Agency</span>
+    </div>
+  </footer>
+
+  <script>
+    const footerAgencyLink = document.getElementById('footerAgencyLink');
+    if (footerAgencyLink) {
+      footerAgencyLink.addEventListener('click', function () {
+        footerAgencyLink.classList.add('is-clicked');
+      });
+    }
+
+
+    const navToggle = document.querySelector('.nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const dropdowns = document.querySelectorAll('.has-dropdown');
+
+    if (navToggle && mainNav) {
+      navToggle.addEventListener('click', () => {
+        const isActive = mainNav.classList.toggle('active');
+        navToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      });
+    }
+
+    dropdowns.forEach(drop => {
+      const button = drop.querySelector('button');
+      if (!button) return;
+      button.addEventListener('click', (e) => {
+        if (window.innerWidth > 960) return;
+        e.preventDefault();
+        dropdowns.forEach(item => {
+          if (item !== drop) item.classList.remove('open');
+        });
+        drop.classList.toggle('open');
+      });
+    });
+
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 960) {
+          mainNav.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+          dropdowns.forEach(item => item.classList.remove('open'));
+        }
+      });
+    });
+  </script>
+</body>
+</html>
